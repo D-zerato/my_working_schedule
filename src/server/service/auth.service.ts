@@ -1,8 +1,8 @@
-import {initAccessKey} from '../api/file.api';
-import {findFolderId} from './folder.service';
+import {initDriveAccessKey} from '../api/file.api';
+import {LocalStorageItemKeys} from '../../shared/model/LocalStorageItemKeys';
 
-export async function initDrive(token: string) {
+export async function setAccessToken(token: string) {
     //
-    await initAccessKey(token)
-    await findFolderId()
+    localStorage.setItem(LocalStorageItemKeys.GOOGLE_ACCESS_TOKEN, token)
+    await initDriveAccessKey(token)
 }

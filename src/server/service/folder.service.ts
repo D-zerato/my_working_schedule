@@ -4,7 +4,7 @@ const DEFAULT_PROJECT_FOLDER_NAME = "app_my_working_schedule";
 
 let folderId: string | undefined = undefined;
 
-export async function findFolderId(): Promise<string> {
+export async function findDriveFolder(): Promise<string> {
     //
     if (folderId) {
         return folderId;

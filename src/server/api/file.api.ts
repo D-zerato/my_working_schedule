@@ -3,7 +3,7 @@ import {DriveFolderModel} from '../model/DriveFolderModel';
 
 export let googleAccessKey: undefined | string = undefined
 
-export function initAccessKey(accessToken: string) {
+export function initDriveAccessKey(accessToken: string) {
     googleAccessKey = accessToken;
 }
 
@@ -85,7 +85,6 @@ export const createEmptyJsonFile = async (folderId: string, fileName: string): P
         console.error('Error creating empty JSON file:', error);
     }
 };
-
 
 export const findFolder = async (folderName: string): Promise<DriveFolderModel | undefined> => {
     try {

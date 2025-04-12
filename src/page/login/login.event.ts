@@ -1,8 +1,8 @@
 import {useGoogleLogin} from '@react-oauth/google';
 import {useNavigate} from 'react-router-dom';
-import {LocalStorageItemKeys} from '../../shared/model/LocalStorageItemKeys';
-import {initDrive} from '../../server/service/auth.service';
+import {setAccessToken} from '../../server/service/auth.service';
 import {validateAccessTokenApi} from '../../server/api/auth.api';
+import {findDriveFolder} from '../../server/service/folder.service';
 
 export function useGoogleLoginEvent() {
     const navigate = useNavigate();
@@ -12,9 +12,9 @@ export function useGoogleLoginEvent() {
         onSuccess: async (tokenResponse) => {
             const accessToken = tokenResponse.access_token;
             console.log("✅ 로그인 성공! accessToken:", accessToken);
-            localStorage.setItem(LocalStorageItemKeys.GOOGLE_ACCESS_TOKEN, accessToken)
-            await initDrive(accessToken);
-            await navigate("/today")
+            await setAccessToken(accessToken);
+            await findDriveFolder();
+            navigate("/today")
         },
         onError: (err) => {
             console.error(err)
@@ -38,8 +38,8 @@ export function useValidateAccessTokenEvent() {
             return;
         }
 
-        localStorage.setItem(LocalStorageItemKeys.GOOGLE_ACCESS_TOKEN, accessToken)
-        initDrive(accessToken);
+        await setAccessToken(accessToken);
+        await findDriveFolder()
         navigate("/today")
         return;
     }
