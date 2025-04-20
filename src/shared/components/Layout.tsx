@@ -4,23 +4,19 @@ import {BottomNavigation, BottomNavigationAction, Paper} from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import {LocalStorageItemKeys} from '../model/LocalStorageItemKeys';
-import {useValidateAccessTokenEvent} from '../../page/login/login.event';
 import {useAtomValue} from 'jotai';
 import {isLoadingAtom} from '../store/shared.store';
+import {initData} from '../../logic/async.logic';
 
 const Layout: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const currentTab = location.pathname.split('/')[1] || 'todaySchedule';
-    const accessToken = localStorage.getItem(LocalStorageItemKeys.GOOGLE_ACCESS_TOKEN) || undefined
     const isLoading = useAtomValue(isLoadingAtom)
 
-    const loginCheck = useValidateAccessTokenEvent()
-
     useEffect(() => {
-        loginCheck(accessToken)
-    }, [accessToken]);
+        initData()
+    }, []);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         if (currentTab !== newValue) navigate(`/${newValue}`);

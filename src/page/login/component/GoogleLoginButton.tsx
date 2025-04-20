@@ -1,11 +1,10 @@
 import React from 'react'
 import GoogleIcon from '@mui/icons-material/Google';
 import {Button} from '@mui/material';
-import {useGoogleLoginEvent} from '../login.event';
+import {useLoginEvent} from '../../../logic/auth.logic';
 
 export const GoogleLoginButton = () => {
-    const login = useGoogleLoginEvent()
-
+    const login = useLoginEvent()
     return <Button
         variant="contained"
         color="primary"

@@ -1,4 +1,4 @@
-export interface MealCostModel {
+export interface MealCost_Model {
     date: Date;
     cost: number;
     registeredTime: Date;

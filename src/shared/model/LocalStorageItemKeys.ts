@@ -1,1 +1,4 @@
-export enum LocalStorageItemKeys {GOOGLE_ACCESS_TOKEN = "googleAccessToken"}
+export enum LocalStorageItemKeys {
+    GOOGLE_ACCESS_TOKEN = "googleAccessToken",
+    GOOGLE_FOLDER_ID = "googleFolderId"
+}

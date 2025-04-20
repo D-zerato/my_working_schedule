@@ -1,4 +1,4 @@
-export interface WorkingScheduleModel {
+export interface Schedule_Model {
     startTime: Date;
     endTime?: Date;
     totalWorkingTime?: number;
